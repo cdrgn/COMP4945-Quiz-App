@@ -42,11 +42,8 @@ const Categories : React.FC = () =>
     };
 
     const handleQuizClick  = (quizId: number) => {
-        navigate(` / quiz /${
-            quizId
-        }`);
-    }
-    ;
+        navigate(`/quiz/${quizId}`);
+    };
 
     if (isLoading)
     {

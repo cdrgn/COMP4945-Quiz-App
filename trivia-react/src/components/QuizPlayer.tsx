@@ -51,7 +51,7 @@ const QuizPlayer: React.FC = () => {
                 if (correctAnswer) {
                     handleAnswerClick(correctAnswer.id, true);
                 }
-            }, 5000); // Auto-advance after 5 seconds
+            }, 8000); // Auto-advance after 5 seconds
         }
 
         return () => {
@@ -90,7 +90,7 @@ const QuizPlayer: React.FC = () => {
             } else {
                 setShowResult(true);
             }
-        }, 1500);
+        }, 3000);
     };
 
     const toggleAutoPlay = () => {

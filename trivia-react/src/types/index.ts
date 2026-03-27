@@ -37,6 +37,7 @@ export interface Answer {
     id: number;
     answerText: string;
     isCorrect: boolean;
+    orderIndex?: number;
 }
 
 export interface QuizDto {

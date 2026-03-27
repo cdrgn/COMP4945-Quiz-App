@@ -36,6 +36,33 @@ const AdminPanel: React.FC = () => {
         }
     };
 
+    const handleEditQuiz = async (id: number) => {
+        try {
+            // Fetch the full quiz with questions
+            const quizData = await quizAPI.getQuiz(id);
+
+            // Populate form with existing data
+            setCategoryName(quizData.categoryName);
+            setTitle(quizData.title);
+            setQuestions(quizData.questions.map(q => ({
+                questionText: q.questionText,
+                mediaUrl: q.mediaUrl || '',
+                mediaType: q.mediaType || '',
+                answers: q.answers.map(a => ({
+                    answerText: a.answerText,
+                    isCorrect: a.isCorrect,
+                    orderIndex: a.orderIndex
+                }))
+            })));
+
+            // Show form in edit mode
+            setEditingQuiz({id: quizData.id} as any);
+            setShowCreateForm(true);
+        } catch (err) {
+            alert('Failed to load quiz for editing');
+        }
+    };
+
     const handleDeleteQuiz = async (id: number) => {
         if (!window.confirm('Are you sure you want to delete this quiz?')) return;
 
@@ -173,7 +200,11 @@ const AdminPanel: React.FC = () => {
             resetForm();
             loadQuizzes();
         } catch (err: any) {
-            alert('Failed to save quiz: ' + (err.response?.data || err.message));
+            //alert('Failed to save quiz: ' + (err.response?.data || err.message));
+            console.error('Full error:', err);
+            console.error('Error response:', err.response);
+            console.error('Error data:', err.response?.data);
+            alert('Failed to save quiz. Check console for details.');
         }
     };
 
@@ -349,6 +380,12 @@ const AdminPanel: React.FC = () => {
                                 <div className="quiz-item-header">
                                     <h3>{quiz.categoryName}</h3>
                                     <div className="quiz-actions">
+                                        <button
+                                            onClick={() => handleEditQuiz(quiz.id)}
+                                            className="edit-btn"
+                                        >
+                                            Edit
+                                        </button>
                                         <button
                                             onClick={() => handleDeleteQuiz(quiz.id)}
                                             className="delete-btn"

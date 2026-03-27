@@ -318,6 +318,25 @@
     color: #999;
 }
 
+.quiz-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: white;
+    background: #667eea;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background: #5568d3;
+}
+
 .delete-btn {
     padding: 8px 16px;
     font-size: 14px;
