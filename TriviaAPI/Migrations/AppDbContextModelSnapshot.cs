@@ -396,7 +396,7 @@ namespace TriviaAPI.Migrations
                         {
                             Id = 1,
                             CategoryName = "1960s Music",
-                            CreatedAt = new DateTime(2026, 3, 27, 12, 0, 27, 804, DateTimeKind.Utc).AddTicks(7880),
+                            CreatedAt = new DateTime(2026, 3, 27, 14, 45, 41, 681, DateTimeKind.Utc).AddTicks(9250),
                             IsActive = true,
                             Title = "Classic Hits from the 60s"
                         },
@@ -404,7 +404,7 @@ namespace TriviaAPI.Migrations
                         {
                             Id = 2,
                             CategoryName = "1970s Movies",
-                            CreatedAt = new DateTime(2026, 3, 27, 12, 0, 27, 804, DateTimeKind.Utc).AddTicks(9150),
+                            CreatedAt = new DateTime(2026, 3, 27, 14, 45, 41, 682, DateTimeKind.Utc).AddTicks(1180),
                             IsActive = true,
                             Title = "Iconic Films of the 70s"
                         },
@@ -412,7 +412,7 @@ namespace TriviaAPI.Migrations
                         {
                             Id = 3,
                             CategoryName = "1950s History",
-                            CreatedAt = new DateTime(2026, 3, 27, 12, 0, 27, 804, DateTimeKind.Utc).AddTicks(9160),
+                            CreatedAt = new DateTime(2026, 3, 27, 14, 45, 41, 682, DateTimeKind.Utc).AddTicks(1190),
                             IsActive = true,
                             Title = "Historical Events of the 50s"
                         });
@@ -447,17 +447,17 @@ namespace TriviaAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 3, 27, 12, 0, 27, 438, DateTimeKind.Utc).AddTicks(6210),
+                            CreatedAt = new DateTime(2026, 3, 27, 14, 45, 41, 241, DateTimeKind.Utc).AddTicks(3640),
                             Email = "admin@hotmail.com",
-                            PasswordHash = "$2a$11$RDzD3GC5ExrCOdOSyWm74.zxqJ6FcM0WSQU9SzUEKNtxfodZe10C6",
+                            PasswordHash = "$2a$11$Zhx3M4KD/yvOjZABRkggKOnJcBON3VvNXuAy9EvOldGFKdpNRqXGS",
                             Role = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 3, 27, 12, 0, 27, 672, DateTimeKind.Utc).AddTicks(5770),
+                            CreatedAt = new DateTime(2026, 3, 27, 14, 45, 41, 540, DateTimeKind.Utc).AddTicks(5590),
                             Email = "user@hotmail.com",
-                            PasswordHash = "$2a$11$Od6v6mjAdNXix47MSAfpMO/ruVO.ldXKr9VYDE6qwA0kMIAJyqP2e",
+                            PasswordHash = "$2a$11$/cEMC7V9yXVYOrPIGwQpwO2vH0tkVyFYgPX/llSJR5vYQyepYTiVG",
                             Role = "User"
                         });
                 });

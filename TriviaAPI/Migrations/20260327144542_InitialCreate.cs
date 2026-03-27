@@ -95,9 +95,9 @@ namespace TriviaAPI.Migrations
                 columns: new[] { "Id", "CategoryName", "CreatedAt", "IsActive", "Title" },
                 values: new object[,]
                 {
-                    { 1, "1960s Music", new DateTime(2026, 3, 27, 12, 0, 27, 804, DateTimeKind.Utc).AddTicks(7880), true, "Classic Hits from the 60s" },
-                    { 2, "1970s Movies", new DateTime(2026, 3, 27, 12, 0, 27, 804, DateTimeKind.Utc).AddTicks(9150), true, "Iconic Films of the 70s" },
-                    { 3, "1950s History", new DateTime(2026, 3, 27, 12, 0, 27, 804, DateTimeKind.Utc).AddTicks(9160), true, "Historical Events of the 50s" }
+                    { 1, "1960s Music", new DateTime(2026, 3, 27, 14, 45, 41, 681, DateTimeKind.Utc).AddTicks(9250), true, "Classic Hits from the 60s" },
+                    { 2, "1970s Movies", new DateTime(2026, 3, 27, 14, 45, 41, 682, DateTimeKind.Utc).AddTicks(1180), true, "Iconic Films of the 70s" },
+                    { 3, "1950s History", new DateTime(2026, 3, 27, 14, 45, 41, 682, DateTimeKind.Utc).AddTicks(1190), true, "Historical Events of the 50s" }
                 });
 
             migrationBuilder.InsertData(
@@ -105,8 +105,8 @@ namespace TriviaAPI.Migrations
                 columns: new[] { "Id", "CreatedAt", "Email", "PasswordHash", "Role" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 3, 27, 12, 0, 27, 438, DateTimeKind.Utc).AddTicks(6210), "admin@hotmail.com", "$2a$11$RDzD3GC5ExrCOdOSyWm74.zxqJ6FcM0WSQU9SzUEKNtxfodZe10C6", "Admin" },
-                    { 2, new DateTime(2026, 3, 27, 12, 0, 27, 672, DateTimeKind.Utc).AddTicks(5770), "user@hotmail.com", "$2a$11$Od6v6mjAdNXix47MSAfpMO/ruVO.ldXKr9VYDE6qwA0kMIAJyqP2e", "User" }
+                    { 1, new DateTime(2026, 3, 27, 14, 45, 41, 241, DateTimeKind.Utc).AddTicks(3640), "admin@hotmail.com", "$2a$11$Zhx3M4KD/yvOjZABRkggKOnJcBON3VvNXuAy9EvOldGFKdpNRqXGS", "Admin" },
+                    { 2, new DateTime(2026, 3, 27, 14, 45, 41, 540, DateTimeKind.Utc).AddTicks(5590), "user@hotmail.com", "$2a$11$/cEMC7V9yXVYOrPIGwQpwO2vH0tkVyFYgPX/llSJR5vYQyepYTiVG", "User" }
                 });
 
             migrationBuilder.InsertData(

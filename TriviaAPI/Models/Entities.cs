@@ -29,7 +29,7 @@ public class Question
     public string? MediaType { get; set; } // "image", "audio", "video", null
     public int OrderIndex { get; set; }
     
-    public Quiz Quiz { get; set; } = null!;
+    public Quiz? Quiz { get; set; } = null;
     public List<Answer> Answers { get; set; } = new();
 }
 
@@ -41,7 +41,7 @@ public class Answer
     public bool IsCorrect { get; set; }
     public int OrderIndex { get; set; }
     
-    public Question Question { get; set; } = null!;
+    public Question? Question { get; set; } = null;
 }
 
 // DTOs for API requests/responses
