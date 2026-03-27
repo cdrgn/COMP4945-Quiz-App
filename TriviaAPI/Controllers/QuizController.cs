@@ -41,36 +41,38 @@ public class QuizController : ControllerBase
     public async Task<ActionResult<QuizDto>> GetQuiz(int id)
     {
         var quiz = await _context.Quizzes
-            .Include(q => q.Questions.OrderBy(q => q.OrderIndex))
-            .ThenInclude(q => q.Answers.OrderBy(a => a.OrderIndex))
-            .FirstOrDefaultAsync(q => q.Id == id);
+            .Where(q => q.Id == id)
+            .Select(q => new QuizDto
+            {
+                Id = q.Id,
+                CategoryName = q.CategoryName,
+                Title = q.Title,
+                Questions = q.Questions
+                    .OrderBy(quest => quest.OrderIndex)
+                    .Select(quest => new QuestionDto
+                    {
+                        Id = quest.Id,
+                        QuestionText = quest.QuestionText,
+                        MediaUrl = quest.MediaUrl,
+                        MediaType = quest.MediaType,
+                        Answers = quest.Answers
+                            .OrderBy(a => a.OrderIndex)
+                            .Select(a => new AnswerDto
+                            {
+                                Id = a.Id,
+                                AnswerText = a.AnswerText,
+                                IsCorrect = a.IsCorrect
+                            }).ToList()
+                    }).ToList()
+            })
+            .FirstOrDefaultAsync();
 
         if (quiz == null)
         {
             return NotFound();
         }
 
-        var quizDto = new QuizDto
-        {
-            Id = quiz.Id,
-            CategoryName = quiz.CategoryName,
-            Title = quiz.Title,
-            Questions = quiz.Questions.Select(q => new QuestionDto
-            {
-                Id = q.Id,
-                QuestionText = q.QuestionText,
-                MediaUrl = q.MediaUrl,
-                MediaType = q.MediaType,
-                Answers = q.Answers.Select(a => new AnswerDto
-                {
-                    Id = a.Id,
-                    AnswerText = a.AnswerText,
-                    IsCorrect = a.IsCorrect
-                }).ToList()
-            }).ToList()
-        };
-
-        return Ok(quizDto);
+        return Ok(quiz);
     }
 
     // ADMIN ONLY ENDPOINTS
@@ -78,10 +80,17 @@ public class QuizController : ControllerBase
     // GET: api/quiz/admin/all
     [HttpGet("admin/all")]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<List<Quiz>>> GetAllQuizzes()
+    public async Task<ActionResult<List<object>>> GetAllQuizzes()
     {
         var quizzes = await _context.Quizzes
-            .Include(q => q.Questions)
+            .Select(q => new
+            {
+                q.Id,
+                q.CategoryName,
+                q.Title,
+                q.IsActive,
+                QuestionCount = q.Questions.Count
+            })
             .ToListAsync();
 
         return Ok(quizzes);
@@ -108,7 +117,27 @@ public class QuizController : ControllerBase
             return BadRequest();
         }
 
-        _context.Entry(quiz).State = EntityState.Modified;
+        // Delete existing questions and answers
+        var existingQuiz = await _context.Quizzes
+            .Include(q => q.Questions)
+            .ThenInclude(q => q.Answers)
+            .FirstOrDefaultAsync(q => q.Id == id);
+
+        if (existingQuiz == null)
+        {
+            return NotFound();
+        }
+
+        // Update basic properties
+        existingQuiz.CategoryName = quiz.CategoryName;
+        existingQuiz.Title = quiz.Title;
+        existingQuiz.IsActive = quiz.IsActive;
+
+        // Remove old questions (cascade will delete answers)
+        _context.Questions.RemoveRange(existingQuiz.Questions);
+
+        // Add new questions
+        existingQuiz.Questions = quiz.Questions;
 
         try
         {

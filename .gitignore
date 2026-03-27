@@ -1,6 +1,21 @@
+# IDE
 .idea/
-obj/
+.vscode/
+.vs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backend
 *.db
 *.db-shm
 *.db-wal
-wwwroot/media/*
+**/bin/
+**/obj/
+**/wwwroot/media/*
+
+# Frontend
+**/node_modules/
+**/build/
+*.log
