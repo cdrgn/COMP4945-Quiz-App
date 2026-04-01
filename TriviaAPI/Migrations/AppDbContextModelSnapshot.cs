@@ -132,8 +132,8 @@ namespace TriviaAPI.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("NVARCHAR2(60)");
+                        .HasMaxLength(100)
+                        .HasColumnType("NVARCHAR2(100)");
 
                     b.Property<string>("Role")
                         .IsRequired()

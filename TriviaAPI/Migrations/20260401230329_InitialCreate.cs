@@ -34,7 +34,7 @@ namespace TriviaAPI.Migrations
                     Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
                         .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
                     Email = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
-                    PasswordHash = table.Column<string>(type: "NVARCHAR2(60)", maxLength: 60, nullable: false),
+                    PasswordHash = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
                     Role = table.Column<string>(type: "NVARCHAR2(20)", maxLength: 20, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
                 },

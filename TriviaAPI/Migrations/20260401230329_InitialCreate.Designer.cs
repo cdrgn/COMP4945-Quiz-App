@@ -12,7 +12,7 @@ using TriviaAPI.Data;
 namespace TriviaAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260401222427_InitialCreate")]
+    [Migration("20260401230329_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -135,8 +135,8 @@ namespace TriviaAPI.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("NVARCHAR2(60)");
+                        .HasMaxLength(100)
+                        .HasColumnType("NVARCHAR2(100)");
 
                     b.Property<string>("Role")
                         .IsRequired()

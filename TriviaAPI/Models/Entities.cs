@@ -7,7 +7,7 @@ public class User
     public int Id { get; set; }
 	[MaxLength(100)]
     public string Email { get; set; } = string.Empty;
-	[MaxLength(60)]
+	[MaxLength(100)]
     public string PasswordHash { get; set; } = string.Empty;
 	[MaxLength(20)]
     public string Role { get; set; } = "User"; // "Admin" or "User"
