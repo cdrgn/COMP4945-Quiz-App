@@ -1,0 +1,221 @@
+[
+  {
+    "categoryName": "1960s Music",
+    "title": "Classic Hits from the 60s",
+    "questions": [
+      {
+        "questionText": "Who sang 'Imagine'?",
+        "mediaType": "audio",
+        "mediaUrl": "/media/imagine.mp3",
+        "orderIndex": 1,
+        "answers": [
+          {
+            "answerText": "John Lennon",
+            "isCorrect": true,
+            "orderIndex": 1
+          },
+          {
+            "answerText": "Paul McCartney",
+            "isCorrect": false,
+            "orderIndex": 2
+          },
+          {
+            "answerText": "Bob Dylan",
+            "isCorrect": false,
+            "orderIndex": 3
+          }
+        ]
+      },
+      {
+        "questionText": "Which band is shown in this photo?",
+        "mediaType": "image",
+        "mediaUrl": "/media/beatles.jpg",
+        "orderIndex": 2,
+        "answers": [
+          {
+            "answerText": "The Beatles",
+            "isCorrect": true,
+            "orderIndex": 1
+          },
+          {
+            "answerText": "The Rolling Stones",
+            "isCorrect": false,
+            "orderIndex": 2
+          },
+          {
+            "answerText": "The Who",
+            "isCorrect": false,
+            "orderIndex": 3
+          }
+        ]
+      },
+      {
+        "questionText": "Who sang 'Respect'?",
+        "orderIndex": 3,
+        "answers": [
+          {
+            "answerText": "Aretha Franklin",
+            "isCorrect": true,
+            "orderIndex": 1
+          },
+          {
+            "answerText": "Diana Ross",
+            "isCorrect": false,
+            "orderIndex": 2
+          },
+          {
+            "answerText": "Etta James",
+            "isCorrect": false,
+            "orderIndex": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "categoryName": "1970s Movies",
+    "title": "Iconic Films of the 70s",
+    "questions": [
+      {
+        "questionText": "Name this classic movie scene",
+        "mediaType": "video",
+        "mediaUrl": "/media/godfather.mp4",
+        "orderIndex": 1,
+        "answers": [
+          {
+            "answerText": "The Godfather",
+            "isCorrect": true,
+            "orderIndex": 1
+          },
+          {
+            "answerText": "Scarface",
+            "isCorrect": false,
+            "orderIndex": 2
+          },
+          {
+            "answerText": "Goodfellas",
+            "isCorrect": false,
+            "orderIndex": 3
+          }
+        ]
+      },
+      {
+        "questionText": "Who is this legendary actor?",
+        "mediaType": "image",
+        "mediaUrl": "/media/deniro.jpg",
+        "orderIndex": 2,
+        "answers": [
+          {
+            "answerText": "Robert De Niro",
+            "isCorrect": true,
+            "orderIndex": 1
+          },
+          {
+            "answerText": "Al Pacino",
+            "isCorrect": false,
+            "orderIndex": 2
+          },
+          {
+            "answerText": "Marlon Brando",
+            "isCorrect": false,
+            "orderIndex": 3
+          }
+        ]
+      },
+      {
+        "questionText": "Complete the quote: 'You talkin' to me?'",
+        "orderIndex": 3,
+        "answers": [
+          {
+            "answerText": "Taxi Driver",
+            "isCorrect": true,
+            "orderIndex": 1
+          },
+          {
+            "answerText": "Raging Bull",
+            "isCorrect": false,
+            "orderIndex": 2
+          },
+          {
+            "answerText": "The Deer Hunter",
+            "isCorrect": false,
+            "orderIndex": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "categoryName": "1950s History",
+    "title": "Historical Events of the 50s",
+    "questions": [
+      {
+        "questionText": "What year did this event occur?",
+        "mediaType": "image",
+        "mediaUrl": "/media/1950s-event.jpg",
+        "orderIndex": 1,
+        "answers": [
+          {
+            "answerText": "1955",
+            "isCorrect": true,
+            "orderIndex": 1
+          },
+          {
+            "answerText": "1952",
+            "isCorrect": false,
+            "orderIndex": 2
+          },
+          {
+            "answerText": "1958",
+            "isCorrect": false,
+            "orderIndex": 3
+          }
+        ]
+      },
+      {
+        "questionText": "Who was US President in 1953?",
+        "orderIndex": 2,
+        "answers": [
+          {
+            "answerText": "Dwight D. Eisenhower",
+            "isCorrect": true,
+            "orderIndex": 1
+          },
+          {
+            "answerText": "Harry S. Truman",
+            "isCorrect": false,
+            "orderIndex": 2
+          },
+          {
+            "answerText": "John F. Kennedy",
+            "isCorrect": false,
+            "orderIndex": 3
+          }
+        ]
+      },
+      {
+        "questionText": "Identify this famous speech",
+        "mediaType": "audio",
+        "mediaUrl": "/media/speech.mp3",
+        "orderIndex": 3,
+        "answers": [
+          {
+            "answerText": "Eisenhower's Farewell",
+            "isCorrect": true,
+            "orderIndex": 1
+          },
+          {
+            "answerText": "Churchill's Iron Curtain",
+            "isCorrect": false,
+            "orderIndex": 2
+          },
+          {
+            "answerText": "Truman Doctrine",
+            "isCorrect": false,
+            "orderIndex": 3
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -12,7 +12,7 @@ using TriviaAPI.Data;
 namespace TriviaAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260401212945_InitialCreate")]
+    [Migration("20260401222427_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
