@@ -14,9 +14,13 @@ const AdminPanel: React.FC = () => {
     const [title, setTitle] = useState('');
     const [questions, setQuestions] = useState<any[]>([
         {
-            questionText: '', mediaUrl: '', mediaType: '', answers: [
-                {answerText: '', isCorrect: false},
-                {answerText: '', isCorrect: false}
+            id: undefined,           
+            questionText: '',
+            mediaUrl: '',
+            mediaType: '',
+            answers: [
+                {id: undefined, answerText: '', isCorrect: false}, 
+                {id: undefined, answerText: '', isCorrect: false}
             ]
         }
     ]);
@@ -38,25 +42,25 @@ const AdminPanel: React.FC = () => {
 
     const handleEditQuiz = async (id: number) => {
         try {
-            // Fetch the full quiz with questions
             const quizData = await quizAPI.getQuiz(id);
 
-            // Populate form with existing data
             setCategoryName(quizData.categoryName);
             setTitle(quizData.title);
+
+            // Preserve IDs so backend knows to UPDATE not CREATE
             setQuestions(quizData.questions.map(q => ({
+                id: q.id,                    // ← Keep question ID
                 questionText: q.questionText,
                 mediaUrl: q.mediaUrl || '',
                 mediaType: q.mediaType || '',
                 answers: q.answers.map(a => ({
+                    id: a.id,                  // Keep answer ID
                     answerText: a.answerText,
-                    isCorrect: a.isCorrect,
-                    orderIndex: a.orderIndex
+                    isCorrect: a.isCorrect
                 }))
             })));
 
-            // Show form in edit mode
-            setEditingQuiz({id: quizData.id} as any);
+            setEditingQuiz({id: id, categoryName: '', title: ''} as Quiz);
             setShowCreateForm(true);
         } catch (err) {
             alert('Failed to load quiz for editing');
@@ -171,19 +175,21 @@ const AdminPanel: React.FC = () => {
             }
         }
 
-        const quizData = {
-            categoryName,
-            title,
-            isActive: true,
-            questions: questions.map((q, i) => ({
-                questionText: q.questionText,
-                mediaUrl: q.mediaUrl || null,
-                mediaType: q.mediaType || null,
-                orderIndex: i + 1,
-                answers: q.answers.map((a: any, j: number) => ({
-                    answerText: a.answerText,
-                    isCorrect: a.isCorrect,
-                    orderIndex: j + 1
+        const quizData: any = {
+            CategoryName: categoryName,
+            Title: title,
+            IsActive: true,
+            Questions: questions.map((q, i) => ({
+                Id: q.id || 0,              // Send ID if exists, 0 if new
+                QuestionText: q.questionText,
+                MediaUrl: q.mediaUrl || null,
+                MediaType: q.mediaType || null,
+                OrderIndex: i + 1,
+                Answers: q.answers.map((a: any, j: number) => ({
+                    Id: a.id || 0,            // Send ID if exists, 0 if new
+                    AnswerText: a.answerText,
+                    IsCorrect: a.isCorrect,
+                    OrderIndex: j + 1
                 }))
             }))
         };
@@ -396,7 +402,7 @@ const AdminPanel: React.FC = () => {
                                 </div>
                                 <p>{quiz.title}</p>
                                 <div className="quiz-meta">
-                                    <span>{quiz.questions?.length || 0} questions</span>
+                                    <span>{quiz.questionCount || 0} questions</span>
                                 </div>
                             </div>
                         ))}
