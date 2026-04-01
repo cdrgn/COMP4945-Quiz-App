@@ -21,7 +21,7 @@ const Login: React.FC<LoginProps> = ({onLogin}) => {
             const response = await authAPI.login({email, password});
             onLogin(response.token, response.email, response.role);
         } catch (err: any) {
-            setError(err.response?.data || 'Login failed. Please check your credentials.');
+            setError(err.response?.data.message || 'Login failed. Please check your credentials.');
         } finally {
             setIsLoading(false);
         }
