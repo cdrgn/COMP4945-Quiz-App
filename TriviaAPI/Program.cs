@@ -62,8 +62,8 @@ using (var scope = app.Services.CreateScope())
         var seedDate = new DateTime(2026, 4, 1, 0, 0, 0, DateTimeKind.Utc);
         
         // Seed users first
-        var adminHash = "$2a$11$K5K5K5K5K5K5K5K5K5K5K.eZQYzJQYzJQYzJQYzJQYzJQYzJQ";
-        var userHash = "$2a$11$L6L6L6L6L6L6L6L6L6L6L.fAZRzKRzKRzKRzKRzKRzKRzKRz";
+        var adminHash = BCrypt.Net.BCrypt.HashPassword("password");
+        var userHash = BCrypt.Net.BCrypt.HashPassword("password");
         
         db.Users.AddRange(
             new User { Email = "admin@hotmail.com", PasswordHash = adminHash, Role = "Admin", CreatedAt = seedDate },
