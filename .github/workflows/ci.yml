@@ -1,0 +1,37 @@
+# The workflow of the name which shows up in the Giyhub Actions tab
+name: TriviaAPI CI
+
+# Define when this workflow will operate
+on:
+  push:
+    branches: [ main ]   # Operates when it pushes to main branch
+  pull_request:
+    branches: [ main ]   # Operates when there is a PR in main branch
+
+
+# Define what jobs would be operated
+jobs:
+  bulid:
+    # Uses the Ubuntu VM that GitHub provides
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: VM downloads the repo code 
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Installs .Net 10 SDK
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      # Step 3: Download dependencies (e.g. NuGet Package)
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: ./TriviaAPI
+
+      # Step 4: Build the Project (Compile)
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+        working-directory: ./TriviaAPI
