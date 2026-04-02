@@ -144,7 +144,7 @@ const QuizPlayer: React.FC = () => {
     }
 
     const currentQuestion = quiz.questions[currentQuestionIndex];
-    const API_BASE_URL = 'http://localhost:5291';
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
 
     return (
         <div className="quiz-player-container">

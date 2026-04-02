@@ -7,7 +7,7 @@ import {
 } from '../hooks/useQuizHub';
 import './HostScreen.css';
 
-const API = 'http://localhost:5291/api';
+const API = `${process.env.REACT_APP_API_URL}/api`;
 
 interface QuizSummary {
     id: number;
@@ -141,7 +141,7 @@ const HostScreen: React.FC = () => {
     // ── Media renderer ──────────────────────────────────────────────
     const renderMedia = (q: QuestionPayload) => {
         if (!q.mediaUrl) return null;
-        const url = q.mediaUrl.startsWith('http') ? q.mediaUrl : `http://localhost:5291${q.mediaUrl}`;
+        const url = q.mediaUrl.startsWith('http') ? q.mediaUrl : `${process.env.REACT_APP_API_URL}${q.mediaUrl}`;
 
         switch (q.mediaType) {
             case 'image':

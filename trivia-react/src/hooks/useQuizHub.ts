@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import * as signalR from '@microsoft/signalr';
 
-const HUB_URL = 'http://localhost:5291/hubs/quiz';
+const HUB_URL = `${process.env.REACT_APP_API_URL}/hubs/quiz`;
 
 // Matches your existing QuestionDto / AnswerDto from Entities.cs
 export interface AnswerOption {

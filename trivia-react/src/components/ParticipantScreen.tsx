@@ -98,7 +98,7 @@ const ParticipantScreen: React.FC = () => {
     // ── Media renderer ──────────────────────────────────────────────
     const renderMedia = (q: QuestionPayload) => {
         if (!q.mediaUrl) return null;
-        const url = q.mediaUrl.startsWith('http') ? q.mediaUrl : `http://localhost:5291${q.mediaUrl}`;
+        const url = q.mediaUrl.startsWith('http') ? q.mediaUrl : `${process.env.REACT_APP_API_URL}${q.mediaUrl}`;
 
         switch (q.mediaType) {
             case 'image':
