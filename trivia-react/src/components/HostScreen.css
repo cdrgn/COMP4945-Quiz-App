@@ -1,0 +1,176 @@
+/* HostScreen.css — Large monitor display for moderated quiz */
+
+.host-screen {
+    min-height: 100vh;
+    background: #1a1a2e;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+/* Header */
+.host-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+.host-header h1 { font-size: 2.5rem; }
+
+.status-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.status-badge--ok  { background: #4ecca322; color: #4ecca3; border: 1px solid #4ecca3; }
+.status-badge--err { background: #e9456022; color: #e94560; border: 1px solid #e94560; }
+
+/* Lobby — quiz grid */
+.host-lobby h2 { font-size: 1.5rem; margin-bottom: 1.5rem; color: #eee; }
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.25rem;
+}
+.quiz-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.4rem;
+    cursor: pointer; text-align: left;
+    color: inherit; font-family: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.quiz-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(233,69,96,0.2);
+    border-color: #e94560;
+}
+.quiz-card__cat   { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #e94560; }
+.quiz-card__title { font-size: 1.2rem; font-weight: 600; }
+.quiz-card__count { font-size: 0.85rem; color: #999; }
+
+/* Waiting room */
+.host-waiting {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2.5rem;
+}
+.room-code-box { text-align: center; display: flex; flex-direction: column; gap: 0.4rem; }
+.room-code-label { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.15em; color: #999; }
+.room-code-value {
+    font-size: 5rem; font-weight: 800; letter-spacing: 0.3em;
+    color: #e94560;
+}
+.room-code-hint { font-size: 1.1rem; color: #888; }
+
+.participant-list { text-align: center; }
+.participant-list h3 { margin-bottom: 0.75rem; color: #ccc; }
+.participant-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.chip {
+    background: #4ecca322; border: 1px solid #4ecca3;
+    border-radius: 999px; padding: 0.35rem 1rem;
+    font-size: 0.9rem; color: #4ecca3;
+}
+.chip--empty { border-color: #555; color: #888; background: transparent; }
+
+/* Top bar during quiz */
+.host-topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 2rem; font-size: 0.95rem; color: #999;
+}
+.host-topbar span:first-child { font-weight: 600; color: #f0f0f0; }
+
+/* Question area */
+.host-question-area {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1.5rem;
+}
+.host-q-text {
+    font-size: 2rem; font-weight: 600; text-align: center;
+    max-width: 900px; line-height: 1.4;
+}
+
+.host-media { max-width: 600px; max-height: 350px; border-radius: 12px; object-fit: contain; }
+.host-media--audio { width: 400px; }
+
+/* Options */
+.host-options {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; width: 100%; max-width: 800px;
+}
+.host-opt {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.25rem 1.5rem; border-radius: 12px;
+    font-size: 1.15rem; font-weight: 500;
+    transition: opacity 0.3s, transform 0.3s;
+}
+.opt--a { background: #e9456033; border: 2px solid #e94560; }
+.opt--b { background: #4ecca333; border: 2px solid #4ecca3; }
+.opt--c { background: #6495ed33; border: 2px solid #6495ed; }
+.opt--d { background: #ffb74d33; border: 2px solid #ffb74d; }
+
+.host-opt__letter {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; background: rgba(255,255,255,0.1);
+}
+.host-opt--correct { transform: scale(1.03); box-shadow: 0 0 20px #4ecca366; }
+.host-opt--dim { opacity: 0.3; }
+.host-opt__check { margin-left: auto; font-size: 1.5rem; color: #4ecca3; }
+
+/* Stats */
+.host-stats { display: flex; gap: 3rem; }
+.stat { text-align: center; }
+.stat__val { display: block; font-size: 2.5rem; font-weight: 700; color: #4ecca3; }
+.stat__label { font-size: 0.9rem; color: #999; }
+
+/* Scoreboard */
+.scoreboard { width: 100%; max-width: 500px; }
+.scoreboard h3, .scoreboard h2 { text-align: center; margin-bottom: 0.75rem; color: #ccc; }
+.sb-row {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.7rem 1rem; background: rgba(255,255,255,0.04);
+    border-radius: 10px; margin-bottom: 0.4rem;
+}
+.sb-row--first { background: #4ecca322; border: 1px solid #4ecca3; }
+.sb-row__rank { font-weight: 700; color: #999; min-width: 2rem; }
+.sb-row__name { flex: 1; font-weight: 500; }
+.sb-row__score { font-weight: 700; font-size: 1.1rem; color: #e94560; }
+
+/* Bottom bar */
+.host-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: auto;
+}
+.answer-counter { display: flex; align-items: baseline; gap: 0.3rem; }
+.answer-counter__num { font-size: 2rem; font-weight: 700; color: #4ecca3; }
+
+/* Ended */
+.host-screen--ended { align-items: center; justify-content: center; gap: 2rem; }
+.host-screen--ended h1 { font-size: 3rem; }
+.scoreboard--final { margin-bottom: 1.5rem; }
+
+/* Buttons */
+.btn {
+    border: none; border-radius: 12px; font-family: inherit;
+    font-weight: 600; cursor: pointer; transition: transform 0.15s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary {
+    background: linear-gradient(135deg, #e94560, #ff6b6b);
+    color: #fff; padding: 0.9rem 2rem; font-size: 1.1rem;
+}
+.btn--accent {
+    background: #4ecca322; border: 2px solid #4ecca3;
+    color: #4ecca3; padding: 0.75rem 1.5rem; font-size: 1rem;
+}
+.btn--lg { padding: 1rem 3rem; font-size: 1.25rem; }
