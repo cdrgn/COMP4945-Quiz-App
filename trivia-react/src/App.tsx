@@ -4,6 +4,8 @@ import Login from './components/Login';
 import Categories from './components/Categories';
 import QuizPlayer from './components/QuizPlayer';
 import AdminPanel from './components/AdminPanel';
+import HostScreen from './components/HostScreen';             // ← NEW
+import ParticipantScreen from './components/ParticipantScreen'; // ← NEW
 import './App.css';
 
 function App() {
@@ -50,6 +52,9 @@ function App() {
                         <h1>🎯 Trivia Quiz</h1>
                         <div className="nav-links">
                             <a href="/categories">Quizzes</a>
+                            {/* ── NEW: Moderated mode links ── */}
+                            {userRole === 'Admin' && <a href="/host">Host Quiz</a>}
+                            <a href="/join">Join Quiz</a>
                             {userRole === 'Admin' && <a href="/admin">Admin Panel</a>}
                             <button onClick={handleLogout} className="logout-btn">Logout</button>
                         </div>
@@ -97,6 +102,29 @@ function App() {
                             )
                         }
                     />
+
+                    {/* ── NEW: Part B — Moderated mode routes ── */}
+                    <Route
+                        path="/host"
+                        element={
+                            isAuthenticated && userRole === 'Admin' ? (
+                                <HostScreen/>
+                            ) : (
+                                <Navigate to="/login"/>
+                            )
+                        }
+                    />
+                    <Route
+                        path="/join"
+                        element={
+                            isAuthenticated ? (
+                                <ParticipantScreen/>
+                            ) : (
+                                <Navigate to="/login"/>
+                            )
+                        }
+                    />
+
                     <Route path="/" element={<Navigate to="/login"/>}/>
                 </Routes>
             </div>

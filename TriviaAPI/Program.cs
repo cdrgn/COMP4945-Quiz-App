@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json;
 using TriviaAPI.Data;
+using TriviaAPI.Hubs;    // ← NEW: for QuizHub
 using TriviaAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// ── NEW: Register SignalR ───────────────────────────────────────────
+builder.Services.AddSignalR();
 
 // Database
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -32,11 +36,31 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
         };
+
+        // ── NEW: Allow JWT token via query string for WebSocket connections ──
+        // SignalR can't send Authorization headers during the WebSocket handshake,
+        // so the token is passed as ?access_token=... in the connection URL.
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+
+                // Only read from query string for hub endpoints
+                if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
+                {
+                    context.Token = accessToken;
+                }
+
+                return Task.CompletedTask;
+            }
+        };
     });
 
 builder.Services.AddAuthorization();
 
-// CORS
+// CORS — updated to allow credentials (required for SignalR)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
@@ -92,13 +116,13 @@ using (var scope = app.Services.CreateScope())
                 };
                 
                 db.Quizzes.Add(quiz);
-                db.SaveChanges(); // Save to get auto-generated Quiz ID
+                db.SaveChanges();
                 
                 foreach (var questionSeed in quizSeed.Questions)
                 {
                     var question = new Question
                     {
-                        QuizId = quiz.Id, // Use auto-generated ID
+                        QuizId = quiz.Id,
                         QuestionText = questionSeed.QuestionText,
                         MediaType = questionSeed.MediaType,
                         MediaUrl = questionSeed.MediaUrl,
@@ -106,13 +130,13 @@ using (var scope = app.Services.CreateScope())
                     };
                     
                     db.Questions.Add(question);
-                    db.SaveChanges(); // Save to get auto-generated Question ID
+                    db.SaveChanges();
                     
                     foreach (var answerSeed in questionSeed.Answers)
                     {
                         var answer = new Answer
                         {
-                            QuestionId = question.Id, // Use auto-generated ID
+                            QuestionId = question.Id,
                             AnswerText = answerSeed.AnswerText,
                             IsCorrect = answerSeed.IsCorrect,
                             OrderIndex = answerSeed.OrderIndex
@@ -122,7 +146,7 @@ using (var scope = app.Services.CreateScope())
                     }
                 }
                 
-                db.SaveChanges(); // Save all answers for this quiz
+                db.SaveChanges();
             }
         }
     }
@@ -144,5 +168,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// ── NEW: Map the SignalR hub endpoint ───────────────────────────────
+app.MapHub<QuizHub>("/hubs/quiz");
 
 app.Run();
