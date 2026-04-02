@@ -14,8 +14,7 @@ Thumbs.db
 **/bin/
 **/obj/
 
-## uncomment in prod
-## **/wwwroot/media/*
+**/wwwroot/media/*
 
 # Frontend
 **/node_modules/

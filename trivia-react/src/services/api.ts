@@ -2,7 +2,7 @@ import axios from 'axios';
 import {AuthResponse, LoginRequest, Quiz, QuizDto, CreateQuizDto} from '../types';
 
 const API_BASE_URL = 'http://localhost:5291/api';
-// const API_URL = 'https://trivia-quiz-app.westus3.cloudapp.azure.com/api';
+// const API_BASE_URL = 'https://trivia-quiz-app.westus3.cloudapp.azure.com/api';
 
 // Create axios instance with default config
 const api = axios.create({
