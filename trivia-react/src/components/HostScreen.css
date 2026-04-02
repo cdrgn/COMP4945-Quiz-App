@@ -31,12 +31,13 @@
 /* Lobby — quiz grid */
 .host-lobby h2 { font-size: 1.5rem; margin-bottom: 1.5rem; color: #eee; }
 
-.quiz-grid {
+.host-screen .quiz-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.25rem;
 }
-.quiz-card {
+
+.host-screen .quiz-card {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 16px;
@@ -46,14 +47,16 @@
     color: inherit; font-family: inherit;
     transition: transform 0.2s, box-shadow 0.2s;
 }
-.quiz-card:hover {
+
+.host-screen .quiz-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(233,69,96,0.2);
     border-color: #e94560;
 }
-.quiz-card__cat   { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #e94560; }
-.quiz-card__title { font-size: 1.2rem; font-weight: 600; }
-.quiz-card__count { font-size: 0.85rem; color: #999; }
+
+.host-screen .quiz-card__cat   { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #e94560; }
+.host-screen .quiz-card__title { font-size: 1.2rem; font-weight: 600; }
+.host-screen .quiz-card__count { font-size: 0.85rem; color: #999; }
 
 /* Waiting room */
 .host-waiting {
