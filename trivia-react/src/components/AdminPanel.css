@@ -293,6 +293,11 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.quiz-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
 .quiz-item-header {
     display: flex;
     justify-content: space-between;

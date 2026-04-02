@@ -68,13 +68,13 @@
 .p-media { max-width: 90%; max-height: 200px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: contain; }
 .p-media--audio { width: 80%; max-width: 350px; }
 
-.answer-grid {
+.p-screen .answer-grid {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 1rem; width: 100%; max-width: 600px;
 }
 
 /* Big tap-friendly buttons for seniors */
-.answer-btn {
+.p-screen .answer-btn {
     display: flex; align-items: center; gap: 0.75rem;
     padding: 1.5rem 1.25rem; border: none; border-radius: 16px;
     font-family: inherit; font-size: 1.15rem; font-weight: 600;
@@ -82,20 +82,22 @@
     min-height: 80px; /* large touch target */
     transition: transform 0.1s;
 }
-.answer-btn:active { transform: scale(0.96); }
 
-.ans--a { background: #e94560; }
-.ans--b { background: #4ecca3; }
-.ans--c { background: #6495ed; }
-.ans--d { background: #ffb74d; color: #1a1a2e; }
+.p-screen .answer-btn:active { transform: scale(0.96); }
 
-.answer-btn__letter {
+.p-screen .ans--a { background: #e94560; }
+.p-screen .ans--b { background: #4ecca3; }
+.p-screen .ans--c { background: #6495ed; }
+.p-screen .ans--d { background: #ffb74d; color: #1a1a2e; }
+
+.p-screen .answer-btn__letter {
     width: 36px; height: 36px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     font-weight: 700; font-size: 1rem;
     background: rgba(255,255,255,0.25); flex-shrink: 0;
 }
-.ans--d .answer-btn__letter { background: rgba(0,0,0,0.15); }
+
+.p-screen .ans--d .answer-btn__letter { background: rgba(0,0,0,0.15); }
 
 /* ── Submitted ───────────────────────────────────────────────────── */
 .submitted-box { text-align: center; }
