@@ -37,31 +37,36 @@ export function useQuizHub() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const token = localStorage.getItem('token') || '';
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+        setError('No auth token');
+        return;
+    }
 
-        const connection = new signalR.HubConnectionBuilder()
-            .withUrl(HUB_URL, {
-                accessTokenFactory: () => token,
-            })
-            .withAutomaticReconnect([0, 2000, 5000, 10000, 30000])
-            .configureLogging(signalR.LogLevel.Information)
-            .build();
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl(HUB_URL, {
+            accessTokenFactory: () => localStorage.getItem('token') || '',
+        })
+        .withAutomaticReconnect([0, 2000, 5000, 10000, 30000])
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
 
-        connectionRef.current = connection;
+    connectionRef.current = connection;
 
-        connection
-            .start()
-            .then(() => setConnected(true))
-            .catch((err) => setError(err.message));
+    connection
+        .start()
+        .then(() => setConnected(true))
+        .catch((err) => setError(err.message));
 
-        connection.onreconnecting(() => setConnected(false));
-        connection.onreconnected(() => setConnected(true));
-        connection.onclose(() => setConnected(false));
+    connection.onreconnecting(() => setConnected(false));
+    connection.onreconnected(() => setConnected(true));
+    connection.onclose(() => setConnected(false));
 
-        return () => {
-            connection.stop();
-        };
-    }, []);
+    return () => {
+        connection.stop();
+    };
+}, []); 
 
     const invoke = useCallback(
         async <T = void>(method: string, ...args: unknown[]): Promise<T> => {
